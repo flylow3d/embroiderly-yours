@@ -1,0 +1,7 @@
+.env
+node_modules/
+*.prompt.txt
+assets/research/
+tools/shot-*.png
+tools/*.log
+tools/*.output
