@@ -5,3 +5,5 @@ assets/research/
 tools/shot-*.png
 tools/*.log
 tools/*.output
+_preview_stage/
+embroiderly-yours-preview.zip

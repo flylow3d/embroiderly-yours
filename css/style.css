@@ -113,18 +113,24 @@ nav.main a.active { background: var(--sage); color: #fff; }
 nav.main a.cta { background: var(--rose); color: #fff; margin-left: 0.35rem; }
 nav.main a.cta:hover { background: var(--rose-deep); color: #fff; }
 
-/* ---------- hero ---------- */
+/* ---------- hero (homepage: cream split with logo medallion) ---------- */
 .hero {
-  position: relative; min-height: 76vh;
-  display: flex; align-items: flex-end;
-  color: #fff; isolation: isolate; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(120% 90% at 82% 30%, #fbf5e8 0%, var(--cream) 46%, var(--cream-deep) 100%);
 }
-.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-.hero::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(45,35,22,0.25) 0%, rgba(45,35,22,0.05) 38%, rgba(40,30,18,0.82) 100%);
+/* faint aida cross-stitch weave behind the hero */
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0.5;
+  background-image:
+    linear-gradient(0deg, rgba(87,70,50,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(87,70,50,0.05) 1px, transparent 1px);
+  background-size: 7px 7px;
 }
-.hero-inner { padding-top: 5.5rem; padding-bottom: 3.2rem; width: 100%; }
+.hero-inner {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 3rem;
+  padding-top: 4.4rem; padding-bottom: 4.4rem;
+}
 .hero .kicker {
   display: inline-block; background: var(--gold);
   color: var(--walnut-deep); font-weight: 800; font-size: 0.8rem;
@@ -132,18 +138,59 @@ nav.main a.cta:hover { background: var(--rose-deep); color: #fff; }
   padding: 0.4rem 1rem; border-radius: 999px; margin-bottom: 1.1rem;
 }
 .hero h1 {
-  color: #fff; font-size: clamp(2.5rem, 5.6vw, 4.2rem);
-  max-width: 17ch; text-shadow: 0 3px 22px rgba(0,0,0,0.42); font-weight: 600;
+  color: var(--walnut-deep); font-size: clamp(2.5rem, 5.2vw, 4rem);
+  max-width: 15ch; font-weight: 600; line-height: 1.08;
 }
-.hero h1 .script { font-family: 'Kaushan Script', cursive; color: #f4d99a; font-weight: 400; }
+.hero h1 .script { font-family: 'Kaushan Script', cursive; color: var(--gold-deep); font-weight: 400; }
 .hero p.lede {
-  max-width: 55ch; margin: 1rem 0 1.8rem;
-  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
-  color: #f7efe2; text-shadow: 0 2px 12px rgba(0,0,0,0.48);
+  max-width: 46ch; margin: 1.1rem 0 1.8rem;
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem); color: var(--walnut);
 }
 .hero .btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.hero--page { min-height: 42vh; }
-.hero--page .hero-inner { padding-top: 4rem; padding-bottom: 2.4rem; }
+
+/* logo shown as an embroidery-hoop medallion */
+.hero-logo { display: flex; justify-content: center; }
+.hoop {
+  position: relative; width: min(30rem, 82%); aspect-ratio: 1;
+  border-radius: 50%; overflow: hidden;
+  padding: 0.9rem; background: #cda86a;
+  box-shadow:
+    0 0 0 0.55rem #b98f4e,
+    0 22px 50px rgba(64, 51, 31, 0.28);
+}
+.hoop img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 50%; display: block;
+  box-shadow: inset 0 0 0 1px rgba(64,51,31,0.15);
+}
+/* little hoop tightening screw at the top */
+.hoop::before {
+  content: ""; position: absolute; top: -0.55rem; left: 50%; z-index: 2;
+  width: 1.5rem; height: 1.1rem; transform: translateX(-50%);
+  background: #b98f4e; border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(64,51,31,0.3);
+}
+
+/* ---------- interior page heroes (photo background + white text) ---------- */
+.hero--page {
+  min-height: 42vh; display: flex; align-items: flex-end;
+  color: #fff; background: none;
+}
+.hero--page::before { display: none; }
+.hero--page .hero-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.hero--page::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(45,35,22,0.25) 0%, rgba(45,35,22,0.05) 38%, rgba(40,30,18,0.82) 100%);
+}
+.hero--page .hero-inner {
+  display: block; width: 100%; padding-top: 4rem; padding-bottom: 2.4rem;
+}
+.hero--page h1 { color: #fff; text-shadow: 0 3px 22px rgba(0,0,0,0.42); }
+.hero--page h1 .script { color: #f4d99a; }
+.hero--page p.lede { color: #f7efe2; text-shadow: 0 2px 12px rgba(0,0,0,0.48); }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -158,8 +205,8 @@ nav.main a.cta:hover { background: var(--rose-deep); color: #fff; }
 .btn-rose { background: var(--rose); color: #fff; }
 .btn-rose:hover { background: var(--rose-deep); }
 .btn-cream { background: #fffdf8; color: var(--rose-deep); }
-.btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.75); }
-.btn-outline:hover { background: rgba(255,255,255,0.15); }
+.btn-outline { background: transparent; color: var(--walnut); border: 2px solid var(--walnut); }
+.btn-outline:hover { background: var(--walnut); color: var(--cream); }
 
 /* ---------- info strip ---------- */
 .info-strip { background: var(--walnut); color: #f2e7d8; }
@@ -337,8 +384,17 @@ footer.site p.small { font-size: 0.9rem; color: #cbb9a5; margin-top: 0.6rem; }
 }
 .footnote strong { color: #f2e7d8; }
 
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+  .hero-text { order: 2; }
+  .hero-logo { order: 1; }
+  .hero h1, .hero p.lede { max-width: 100%; margin-left: auto; margin-right: auto; }
+  .hero .btns { justify-content: center; }
+  .hoop { width: min(20rem, 78%); }
+}
+
 @media (max-width: 640px) {
-  .hero { min-height: 64vh; }
+  .hero--page { min-height: 64vh; }
   nav.main { justify-content: center; width: 100%; }
   .nav-row { justify-content: center; }
   .banner .pad { max-width: 100%; }
